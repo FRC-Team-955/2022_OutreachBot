@@ -3,7 +3,11 @@ package frc.robot;
 public class Constants {
     
     public static final class DrivebaseConstants {
-        
+        // Talons
+        public static final int kTalonTopRightId = 3;
+        public static final int kTalonBotRightId = 4;
+        public static final int kTalonTopLeftId = 1;
+        public static final int kTalonBotLeftId = 2;
     }
 
     public static final class ShooterConstants {
