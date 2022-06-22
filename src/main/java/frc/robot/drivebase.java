@@ -1,5 +1,4 @@
 package frc.robot;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -12,7 +11,7 @@ public class Drivebase {
     private TalonSRX mTalonBotRight = new TalonSRX(Constants.DrivebaseConstants.kTalonBotRightId);
     private TalonSRX mTalonTopLeft = new TalonSRX(Constants.DrivebaseConstants.kTalonTopLeftId);
     private TalonSRX mTalonBotLeft = new TalonSRX(Constants.DrivebaseConstants.kTalonBotLeftId);
-    DifferentialDrive mDiffDrive = new DifferentialDrive(mTalonTopRight, mTalonTopLeft);
+    private DifferentialDrive mDiffDrive = new DifferentialDrive(mTalonTopRight, mTalonTopLeft);
 
     public void drive(){
         mTalonBotRight.set(ControlMode.Follower, Constants.DrivebaseConstants.kTalonTopRightId);

@@ -31,5 +31,9 @@ public class Constants {
         public static final int kHoodTargetRange = 100;
         // Shooter
         public static final int kShooterTargetRange = 100;
+
+        // Limit Switch
+        public static final int kTopLimitSwitchId = 0;
+        public static final int kBotLimitSwitchId = 0;
     }
 }
