@@ -3,7 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 
 public class Robot extends TimedRobot {
-  private drivebase drive = new drivebase();
+  private Drivebase drive = new Drivebase();
 
   @Override
   public void robotInit() {}
