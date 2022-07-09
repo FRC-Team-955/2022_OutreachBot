@@ -27,6 +27,7 @@ public class Constants {
         public static final double kShooterP = 0;
         public static final double kShooterI = 0;
         public static final double kShooterD = 0;
+        public static final double kShooterF = 0;
         // hood pid
         public static final double kHoodP = 0;
         public static final double kHoodI = 0;
@@ -41,5 +42,10 @@ public class Constants {
         // Limit Switch
         public static final int kTopLimitSwitchId = 0;
         public static final int kBotLimitSwitchId = 0;
+    }
+
+    public static final class BallManagerConstants{
+        public static final double kDefaultAngle = 42.0;
+        public static final double kDefaultSpeed = 6.9;
     }
 }

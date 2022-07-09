@@ -3,7 +3,7 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-public class intake {
+public class Intake {
 
     private TalonSRX mTalonExtend = new TalonSRX(3);
     private TalonSRX mTalonRunIntake = new TalonSRX(4);
@@ -28,5 +28,8 @@ public class intake {
     }
     public void runIntake(){
         mTalonRunIntake.set(ControlMode.PercentOutput, 0.5);
+    }
+    public void stopIntake(){
+        mTalonRunIntake.set(ControlMode.PercentOutput, 0);
     }
 }

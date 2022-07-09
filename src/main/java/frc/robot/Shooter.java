@@ -1,6 +1,8 @@
 package frc.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DigitalInput;
 
@@ -11,9 +13,9 @@ public class Shooter {
     }
     
     // Talons
-    TalonSRX mHoodMotorTalon = new TalonSRX(Constants.ShooterConstants.kHoodMotorTalonId);
-    TalonSRX mShooterMainTalon = new TalonSRX(Constants.ShooterConstants.kShooterMainTalonId);
-    TalonSRX mShooterFollowTalon = new TalonSRX(Constants.ShooterConstants.kShooterFollowTalonId);
+    WPI_TalonSRX mHoodMotorTalon = new WPI_TalonSRX(Constants.ShooterConstants.kHoodMotorTalonId);
+    WPI_TalonSRX mShooterMainTalon = new WPI_TalonSRX(Constants.ShooterConstants.kShooterMainTalonId);
+    WPI_TalonSRX mShooterFollowTalon = new WPI_TalonSRX(Constants.ShooterConstants.kShooterFollowTalonId);
     
     // Limit Switch
     DigitalInput mTopLimitSwitch = new DigitalInput(Constants.ShooterConstants.kTopLimitSwitchId);
@@ -39,7 +41,7 @@ public class Shooter {
 
         double hood_ticks = mHoodMotorTalon.getSelectedSensorPosition();
         double hood_pid = mHoodPID.calculate(hood_ticks, limelight_ticks);
-        mHoodMotorTalon.setSelectedSensorPosition(hood_pid);
+        mHoodMotorTalon.setVoltage(hood_pid);
 
         if (mBotLimitSwitch.get()){
             mHoodMotorTalon.setSelectedSensorPosition(0);
@@ -60,7 +62,7 @@ public class Shooter {
     public boolean revShooter(double limelight_speed){
         double rev_speed = mShooterMainTalon.getSelectedSensorVelocity();
         double rev_pid = mShooterPID.calculate(rev_speed, limelight_speed);
-        mShooterMainTalon.set(ControlMode.PercentOutput, rev_pid);
+        mShooterMainTalon.setVoltage(Constants.ShooterConstants.kShooterF * limelight_speed + rev_pid);
 
         if (rev_speed > limelight_speed - Constants.ShooterConstants.kShooterTargetRange 
         || rev_speed < limelight_speed + Constants.ShooterConstants.kShooterTargetRange){

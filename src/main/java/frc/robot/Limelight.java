@@ -4,9 +4,6 @@ import org.photonvision.targeting.PhotonPipelineResult;
 import org.photonvision.targeting.PhotonTrackedTarget;
 
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 
 
 public class Limelight {
@@ -107,9 +104,5 @@ public class Limelight {
 //     public double getVerticalOffset(){
 //         double y = ty.getDouble(77090054.7480306);
 //         return y;
-//     }
-
-//     public boolean isAlligned(){
-
 //     }
 // }

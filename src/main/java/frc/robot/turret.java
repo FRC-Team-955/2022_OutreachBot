@@ -3,7 +3,7 @@ import edu.wpi.first.math.controller.PIDController;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-public class turret {
+public class Turret {
     // controlls rotation of the shooter
     PIDController pid = new PIDController(1, 0, 0);
     Limelight limelight = new Limelight();
@@ -11,7 +11,7 @@ public class turret {
    
 
     public void alignTurret(){
-        if (limelight.checkLimelight()){
+        if (limelight.isTarget()){
         double speed = pid.calculate(limelight.getHorizontalOffset(), 0);
         talon.set(ControlMode.PercentOutput, speed);
         } else {
