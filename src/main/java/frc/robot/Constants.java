@@ -10,6 +10,12 @@ public class Constants {
         public static final int kTalonBotLeftId = 2;
     }
 
+    public static final class Limelight {
+        public static final double kAlignDistance = 10;
+        public static final double kShooterSpeedMult = 4.20;
+        public static final double kShooterSpeedBase = 6.9;
+    }
+
     public static final class ShooterConstants {
         // Talons
         public static final int kHoodMotorTalonId = 0;
