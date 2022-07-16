@@ -59,7 +59,7 @@ public class Limelight {
     //VERY CONFUSED
     double getHoodPosition(){
         if(isTarget()){
-            return getVerticalOffset() * Constants.Limelight.kShooterSpeedMult + Constants.Limelight.kShooterSpeedBase;
+             return getVerticalOffset() * Constants.Limelight.kHoodPositionMult + Constants.Limelight.kHoodPositionBase;
             }
             else{
                 return 0;

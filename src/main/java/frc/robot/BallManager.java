@@ -10,7 +10,7 @@ public class BallManager {
         spindex.runToShooter();
         }
     }
-    public void shoot(){
+    public void hoodShoot(){
         double limelight_speed = limelight.getShooterSpeed();
         double limelight_ticks = limelight.getHoodPosition();
         if(shooter.adjustHood(limelight_ticks) && shooter.revShooter(limelight_speed) && limelight.isAlligned()){

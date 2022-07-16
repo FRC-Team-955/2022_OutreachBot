@@ -14,6 +14,9 @@ public class Constants {
         public static final double kAlignDistance = 10;
         public static final double kShooterSpeedMult = 4.20;
         public static final double kShooterSpeedBase = 6.9;
+        public static final double kHoodPositionMult = 1.43;
+        public static final double kHoodPositionBase = 0.23;
+        
     }
 
     public static final class ShooterConstants {
@@ -47,5 +50,10 @@ public class Constants {
     public static final class BallManagerConstants{
         public static final double kDefaultAngle = 42.0;
         public static final double kDefaultSpeed = 6.9;
+        public static final double kHoodShootSpeed = 3.25;
+    }
+
+    public static final class TurretConstants{
+        public static final double kTicksToDegree = 350;
     }
 }

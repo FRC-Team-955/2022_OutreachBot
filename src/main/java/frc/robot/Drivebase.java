@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Drivebase {
     // Talons
     private Joystick mJoy = new Joystick(0);
-    private WPI_TalonSRX mTalonTopRight = new WPI_TalonSRX(Constants.DrivebaseConstants.kTalonTopRightId);
-    private WPI_TalonSRX mTalonBotRight = new WPI_TalonSRX(Constants.DrivebaseConstants.kTalonBotRightId);
-    private WPI_TalonSRX mTalonTopLeft = new WPI_TalonSRX(Constants.DrivebaseConstants.kTalonTopLeftId);
-    private WPI_TalonSRX mTalonBotLeft = new WPI_TalonSRX(Constants.DrivebaseConstants.kTalonBotLeftId);
+    public WPI_TalonSRX mTalonTopRight = new WPI_TalonSRX(Constants.DrivebaseConstants.kTalonTopRightId);
+    public WPI_TalonSRX mTalonBotRight = new WPI_TalonSRX(Constants.DrivebaseConstants.kTalonBotRightId);
+    public WPI_TalonSRX mTalonTopLeft = new WPI_TalonSRX(Constants.DrivebaseConstants.kTalonTopLeftId);
+    public WPI_TalonSRX mTalonBotLeft = new WPI_TalonSRX(Constants.DrivebaseConstants.kTalonBotLeftId);
     private DifferentialDrive mDiffDrive = new DifferentialDrive(mTalonTopRight, mTalonTopLeft);
 
     public void drive(){
