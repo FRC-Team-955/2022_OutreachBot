@@ -11,36 +11,36 @@ import com.kauailabs.navx.frc.AHRS;
 
 public class Turret {
     // controlls rotation of the shooter
-    PIDController pid = new PIDController(1, 0, 0);
+    PIDController mPid = new PIDController(1, 0, 0);
     AHRS mNavX = new AHRS(Port.kMXP); 
-    Limelight limelight = new Limelight();
-    TalonSRX talon = new TalonSRX(0);
-    Drivebase drivebase = new Drivebase();
+    Limelight mLimelight = new Limelight();
+    TalonSRX mTalon = new TalonSRX(0);
+    Drivebase mDrivebase = new Drivebase();
     DifferentialDriveOdometry mOdometry = new DifferentialDriveOdometry(new Rotation2d(13), new Pose2d(12, 24, new Rotation2d(0)) );
     boolean is_turning_360 = false;
     boolean is_turning_0 = false;
 
 
     public void updateOdometry(){
-        mOdometry.update(new Rotation2d(mNavX.getAngle()), drivebase.getLeftEncoderPos(), drivebase.getRightEncoderPos());
+        mOdometry.update(new Rotation2d(mNavX.getAngle()), mDrivebase.getLeftEncoderPos(), mDrivebase.getRightEncoderPos());
     }
 
     public void go360(){
-            double speed = pid.calculate(getTurretAngle(), 360);
+            double speed = mPid.calculate(getTurretAngle(), 360);
             if (getTurretAngle() <= 360 && getTurretAngle() >= 0) {
-                talon.set(ControlMode.PercentOutput, speed);
+                mTalon.set(ControlMode.PercentOutput, speed);
         }
     }
 
     public void go0(){
-        double speed = pid.calculate(getTurretAngle(), 0);
+        double speed = mPid.calculate(getTurretAngle(), 0);
         if (getTurretAngle() <= 360 && getTurretAngle() >= 0) {
-            talon.set(ControlMode.PercentOutput, speed);
+            mTalon.set(ControlMode.PercentOutput, speed);
         }
     }
     
     public double getTurretAngle(){
-        return talon.getSelectedSensorPosition()/Constants.TurretConstants.kTicksToDegree;
+        return mTalon.getSelectedSensorPosition()/Constants.TurretConstants.kTicksToDegree;
     }
 
     public void alignTurret(){
@@ -57,38 +57,38 @@ public class Turret {
         else if(getTurretAngle() > 350){
             is_turning_360 = false;
         }
-        if (limelight.isTarget()){
-            if(limelight.getHorizontalOffset() + getTurretAngle() >= 360){
+        if (mLimelight.isTarget()){
+            if(mLimelight.getHorizontalOffset() + getTurretAngle() >= 360){
                 is_turning_0 = true;
             }
-            else if(limelight.getHorizontalOffset() + getTurretAngle() <= 0){
+            else if(mLimelight.getHorizontalOffset() + getTurretAngle() <= 0){
                 is_turning_360 = true;
             }
             else{
-            double speed = pid.calculate(limelight.getHorizontalOffset(), 0);
-            talon.set(ControlMode.PercentOutput, speed);
+            double speed = mPid.calculate(mLimelight.getHorizontalOffset(), 0);
+            mTalon.set(ControlMode.PercentOutput, speed);
             }
         } else {
             double robot_to_goal_angle = 0;
-            double robotY = mOdometry.getPoseMeters().getY();
-            double robotX = mOdometry.getPoseMeters().getX();
+            double robot_Y = mOdometry.getPoseMeters().getY();
+            double robot_X = mOdometry.getPoseMeters().getX();
             double true_turret_angle = (getTurretAngle() + mNavX.getAngle()) % 360;
             
             //add check for 0's
-            if(robotY < 0 && robotX < 0){
-                robot_to_goal_angle = Math.atan(robotY / robotX);
+            if(robot_Y < 0 && robot_X < 0){
+                robot_to_goal_angle = Math.atan(robot_Y / robot_X);
             }
-            else if(robotY > 0 && robotX > 0){
-                robot_to_goal_angle = Math.atan(robotY / robotX) + 180;
+            else if(robot_Y > 0 && robot_X > 0){
+                robot_to_goal_angle = Math.atan(robot_Y / robot_X) + 180;
             }
-            else if(robotY > 0 && robotX < 0){
-                robot_to_goal_angle = 360 - Math.atan(robotY / robotX);
+            else if(robot_Y > 0 && robot_X < 0){
+                robot_to_goal_angle = 360 - Math.atan(robot_Y / robot_X);
             }
-            else if(robotY < 0 && robotX > 0){
-                robot_to_goal_angle = 180 - Math.atan(robotY / robotX);
+            else if(robot_Y < 0 && robot_X > 0){
+                robot_to_goal_angle = 180 - Math.atan(robot_Y / robot_X);
             }
-            double speed = pid.calculate(true_turret_angle, robot_to_goal_angle);
-            talon.set(ControlMode.PercentOutput, speed);
+            double speed = mPid.calculate(true_turret_angle, robot_to_goal_angle);
+            mTalon.set(ControlMode.PercentOutput, speed);
           /*  double robotX = 2;
             double robotY = 4;
             double goalX = 5;
@@ -101,9 +101,9 @@ public class Turret {
     }
 
     public void setDesiredAngle(double setPointDeg, double currentPos){
-        double speed = pid.calculate(currentPos, setPointDeg % 360);
+        double speed = mPid.calculate(currentPos, setPointDeg % 360);
         if (getTurretAngle() <= 360 && getTurretAngle() >= 0) {
-            talon.set(ControlMode.PercentOutput, speed);
+            mTalon.set(ControlMode.PercentOutput, speed);
         }
     }
 
@@ -120,7 +120,7 @@ public class Turret {
     // }
 
     public void stop(){
-        talon.set(ControlMode.PercentOutput, 0);
+        mTalon.set(ControlMode.PercentOutput, 0);
     }
 
 }
